@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Prepare/restore marked LevelUp VREF hooks; never replace whole upstream scripts."""
+"""Prepare/restore Zibo/LevelUp VREF hooks; never replace whole upstream scripts."""
 from __future__ import annotations
 
 import argparse
@@ -98,7 +98,7 @@ def atomic_write(path: Path, data: bytes, mode: int = 0o644) -> None:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("aircraft", type=Path, help="LevelUp aircraft root (not the scripts directory)")
+    parser.add_argument("aircraft", type=Path, help="Zibo or LevelUp aircraft root (not the scripts directory)")
     parser.add_argument("--uninstall", action="store_true", help="Remove only this package's known marked hooks")
     args = parser.parse_args()
     root = args.aircraft.resolve(strict=True)
@@ -123,7 +123,7 @@ def main() -> int:
         if payload.is_symlink():
             raise ValueError("Refusing symlink payload: " + str(payload))
         previous = payload.read_bytes() if payload.exists() else None
-        if previous is not None and previous != module:
+        if previous is not None and previous != module and digest(previous) not in spec.get("legacyPayloadSha256", []):
             raise ValueError("Different existing VREF payload; refusing overwrite: " + str(payload))
         desired = None if args.uninstall else module
         if previous != desired:
@@ -171,7 +171,7 @@ def main() -> int:
         if errors:
             print("ROLLBACK INCOMPLETE; restore from " + str(backup_root) + ": " + "; ".join(errors), file=sys.stderr)
         raise
-    print(("Removed" if args.uninstall else "Installed") + " LevelUp VREF hooks; restart X-Plane.")
+    print(("Removed" if args.uninstall else "Installed") + " Zibo/LevelUp VREF hooks; restart X-Plane.")
     return 0
 
 

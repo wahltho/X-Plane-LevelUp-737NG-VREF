@@ -1,4 +1,4 @@
-# LevelUp 737NG VREF patch
+# Zibo / LevelUp 737NG VREF patch
 
 > **Independent, unofficial community patch.** Not affiliated with, endorsed
 > by, or supported by Zibo, LevelUp, Laminar Research or Boeing.
@@ -6,9 +6,10 @@
 > [wahltho Discord server](https://discord.gg/ySS88PMuyC).
 > Do not contact official aircraft/simulator support channels about this patch.
 
-First preview: **0.1.0-preview.1 — experimental, not simulator validated.**
+Current prerelease source: **0.1.0-preview.2 — adds native Zibo.**
+Simulator validation remains outstanding. Preview1 supported LevelUp only.
 
-Separate from the VNAV descent-table patch. Prepared for LevelUp's upstream
+Separate from the VNAV descent-table patch. Prepared for Zibo/LevelUp's upstream
 4.05.35 Lua/plugin arrangement, not the private C++ port. No original aircraft
 scripts or plugin binaries are distributed. No FCOM PDF is included.
 
@@ -20,7 +21,13 @@ scripts or plugin binaries are distributed. No FCOM PDF is included.
 - Show/select tabulated landing VREF15 on both FMCs, separately from the
   compiled plugin's existing Flaps15 maneuver reference.
 - Correct the kg-to-lb handoff at the Lua speed-envelope VREF lookup.
-- Support LevelUp variant IDs 0–4. Other IDs retain upstream calculations.
+- Support native Zibo variant ID−1 using the -800 FCOM table and LevelUp
+  variant IDs0–4. Other IDs retain upstream calculations.
+
+For native Zibo, VREF30/40 already match the -800 FCOM rows, and the old
+VREF30 cap does not clip those rows. The effective landing-reference correction
+is FMC VREF15 (3–7 kt lower at the table knots). Its normal VNAV maneuver
+target remains VREF40+20. Zibo's separate stall-envelope branch is unchanged.
 
 The existing `laminar/B738/FMS/vref_15` continues to hold VREF40+20 because
 the original plugin directly uses it in VNAV. The FMC landing reference is
@@ -40,27 +47,36 @@ installation targets before modifying the aircraft.
 `package-manifest.json` is a native **schema-3 compatibility package** with
 `exact-text-replacements-v1` hooks and `copy-file-v1` module payloads.
 The Toolkit applies these declaratively; it does not execute `z_Install.py`.
+`python3 tools/build_package.py /path/to/output.zip` creates a deterministic
+ZIP with both standalone root files and MTK's `modules/vref/` payloads.
 
 `catalog/package-entry.json` and `catalog/group-member.json` contain the new
-package and optional LevelUp maintenance-group member (order80). The complete
+package and optional maintenance-group member (order65, before Intentional Fixes), for both Zibo and
+LevelUp. The complete
 `catalog/content-package-catalog.preview.json` is a review snapshot based on
 the locally inspected MTK catalog1.13.0, with these additions. It is not a new
 published catalog version. Merge the two entries into the then-current MTK
 catalog at release, assign its next version and publish only after validation.
 
 The repository URL `https://github.com/wahltho/X-Plane-LevelUp-737NG-VREF`
-is the public source repository. The first package is published as the
-`v0.1.0-preview.1` GitHub prerelease, with ZIP and SHA-256 assets. The live
+is the public source repository. The previous LevelUp-only package was
+`v0.1.0-preview.1`. The live
 MTK catalog has not been modified; the included catalog files are preparation
 for a separate catalog update.
+
+The repository/package ID, module filename and hook markers keep their
+historical LevelUp names to preserve update identity. Preview2 changes the
+table module, not the hook bodies: hook markers therefore retain their
+preview1 revision. The standalone installer accepts only the exact known
+preview1 module hash for an upgrade; modified payloads still block it.
 
 ## Standalone installer (alternative to MTK)
 
 Requires Python3.10 or later. Shut down X-Plane first. Once reviewed and tested:
 
 ```bash
-python3 z_Install.py "/path/to/LevelUp aircraft"
-python3 z_Install.py "/path/to/LevelUp aircraft" --uninstall
+python3 z_Install.py "/path/to/Zibo or LevelUp aircraft"
+python3 z_Install.py "/path/to/Zibo or LevelUp aircraft" --uninstall
 ```
 
 Do not combine standalone ownership with an MTK-managed installation; use one
@@ -80,8 +96,10 @@ is not transactionally atomic. Keep the backups for recovery.
 
 ## Validation status
 
-Prepared source and manifests only. No installer execution, Lua execution,
-automated tests, build, aircraft installation or simulator validation has run.
+Focused archive/catalog tests and a standalone synthetic-aircraft
+install/repeat/uninstall test pass. MTK's production loader accepts the
+schema-3 ZIP. Full MTK install/restore, Lua runtime, real aircraft installation
+and simulator validation have not been completed for preview2.
 No independent review of this Lua package yet. The C++ Source-GO does not
 certify this separate package. See `Documentation/PATCH_READINESS.md` for the
 owner chain, open review gates and proposed focused validation.
@@ -99,7 +117,7 @@ unofficial modification, supplied as-is without warranty. Keep a complete
 aircraft backup, shut down X-Plane before applying changes, and use the patch
 at your own risk. A reviewed source change or a passing dry test does not
 establish correct simulator behavior. The current preparation has neither
-independent Lua-package review nor executable/simulator validation.
+independent Lua-package review nor simulator validation.
 
 This patch does not correct every variant-specific aircraft performance or
 autopilot issue. After an aircraft update, check compatibility and reinstall

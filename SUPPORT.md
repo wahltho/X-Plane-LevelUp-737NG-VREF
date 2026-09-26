@@ -10,7 +10,7 @@ community project with no affiliation, endorsement or official support.
 GitHub Issues and Discussions are disabled; pull requests are not a support
 channel. Support is voluntary and carries no response-time guarantee.
 
-Include the patch version, LevelUp/upstream version, aircraft variant,
+Include the patch version, Zibo or LevelUp/upstream version, aircraft variant,
 operating system, installation method (MTK or standalone) and other installed
 patches. For a VREF report, include gross weight and units, flap setting,
 displayed/expected value, and concise reproduction steps. Include relevant

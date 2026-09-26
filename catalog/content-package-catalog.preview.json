@@ -437,7 +437,7 @@
           "packageId": "wahltho.levelup-737ng.vref",
           "moduleId": "vref",
           "policy": "optional",
-          "installationOrder": 80,
+          "installationOrder": 65,
           "sourceFormat": "compatibility",
           "manifestPath": "package-manifest.json",
           "assetNamePattern": "X-Plane-LevelUp-737NG-VREF-v*.zip"
@@ -447,7 +447,7 @@
     {
       "packageId": "wahltho.zibo-40535.maintenance",
       "displayName": "Zibo optional patches",
-      "description": "Optional VNAV descent tables, Tablet Performance Calculator, AUTO JETWAY, CPDLC FANS PAGES and Intentional Fixes. No patch is required or selected automatically.",
+      "description": "Optional VNAV descent tables, Tablet Performance Calculator, AUTO JETWAY, CPDLC FANS PAGES and Intentional Fixes. No patch is required or selected automatically. VREF tables are optional (prepared preview; validation pending).",
       "category": "compatibilityPackage",
       "activation": "managed",
       "supportedProducts": [
@@ -503,16 +503,26 @@
           "sourceFormat": "compatibility",
           "manifestPath": "package-manifest.json",
           "assetNamePattern": "X-Plane-Zibo-LevelUp-737NG-Intentional-Fixes-MTK-v*.zip"
+        },
+        {
+          "packageId": "wahltho.levelup-737ng.vref",
+          "moduleId": "vref",
+          "policy": "optional",
+          "installationOrder": 65,
+          "sourceFormat": "compatibility",
+          "manifestPath": "package-manifest.json",
+          "assetNamePattern": "X-Plane-LevelUp-737NG-VREF-v*.zip"
         }
       ]
     },
     {
       "packageId": "wahltho.levelup-737ng.vref",
       "displayName": "VREF tables",
-      "description": "FCOM landing-reference speeds for LevelUp 737NG, including a separate 900ER table. Simulator validation pending.",
+      "description": "FCOM landing-reference speeds for Zibo and LevelUp 737NG, including separate 900ER data. Validation pending.",
       "category": "compatibilityPackage",
       "activation": "managed",
       "supportedProducts": [
+        "zibo-737ng",
         "levelup-737ng"
       ],
       "repositoryUrl": "https://github.com/wahltho/X-Plane-LevelUp-737NG-VREF",

@@ -2,10 +2,11 @@
   "schemaVersion": 3,
   "packageType": "compatibilityPackage",
   "packageId": "wahltho.levelup-737ng.vref",
-  "packageVersion": "0.1.0-preview.1",
+  "packageVersion": "0.1.0-preview.2",
   "repositoryUrl": "https://github.com/wahltho/X-Plane-LevelUp-737NG-VREF",
-  "aircraftFamily": "LevelUp 737NG Series for X-Plane 12",
+  "aircraftFamily": "Zibo B737-800X and LevelUp 737NG Series for X-Plane 12",
   "supportedProducts": [
+    "zibo-737ng",
     "levelup-737ng"
   ],
   "restartRequired": true,
@@ -14,17 +15,17 @@
     {
       "moduleId": "vref",
       "displayName": "VREF tables",
-      "description": "FCOM VREF tables with separate 900ER data and FMC landing VREF15; preserves compiled VNAV maneuver reference.",
+      "description": "FCOM landing VREF for native Zibo and LevelUp, including separate 900ER data; preserves the compiled VNAV maneuver reference.",
       "policy": "optional",
       "defaultEnabled": false,
-      "installationOrder": 80,
+      "installationOrder": 65,
       "requires": [],
       "conflictsWith": [],
       "payloads": [
         {
           "path": "payload/B738.levelup_vref.lua",
-          "size": 3276,
-          "sha256": "d30d810453b9cae3ac6ab934b9e2528be531ea81798def635f3115445f4e1a10"
+          "size": 3491,
+          "sha256": "ae700fb36ec14a33e1425e53486b8696d8b3abe87b5151e5bc0bb6e945d50ede"
         },
         {
           "path": "patches/B738.calc.lua.json",
@@ -42,8 +43,10 @@
           "operation": "copy-file-v1",
           "payload": "payload/B738.levelup_vref.lua",
           "relativePath": "plugins/xlua/scripts/B738.calc/B738.levelup_vref.lua",
-          "sourceSha256": [],
-          "resultSha256": "d30d810453b9cae3ac6ab934b9e2528be531ea81798def635f3115445f4e1a10"
+          "sourceSha256": [
+            "d30d810453b9cae3ac6ab934b9e2528be531ea81798def635f3115445f4e1a10"
+          ],
+          "resultSha256": "ae700fb36ec14a33e1425e53486b8696d8b3abe87b5151e5bc0bb6e945d50ede"
         },
         {
           "operation": "exact-text-replacements-v1",
@@ -55,8 +58,10 @@
           "operation": "copy-file-v1",
           "payload": "payload/B738.levelup_vref.lua",
           "relativePath": "plugins/xlua/scripts/B738.a_fms/B738.levelup_vref.lua",
-          "sourceSha256": [],
-          "resultSha256": "d30d810453b9cae3ac6ab934b9e2528be531ea81798def635f3115445f4e1a10"
+          "sourceSha256": [
+            "d30d810453b9cae3ac6ab934b9e2528be531ea81798def635f3115445f4e1a10"
+          ],
+          "resultSha256": "ae700fb36ec14a33e1425e53486b8696d8b3abe87b5151e5bc0bb6e945d50ede"
         },
         {
           "operation": "exact-text-replacements-v1",

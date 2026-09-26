@@ -7,14 +7,15 @@ LevelUp V2.S1.50A calc.lua is identical after newline normalization.
 Reference data: FCOM printed PI.10.4, PI.20.6, PI.40.4, PI.50.4, PI.70.4;
 PDF pages874/1028/1360/1518/1836. 900ER uses the 900ERW/7B27 table.
 The five tables are transcribed in the stateless payload with source labels.
-Existing aliases/MAX/BBJ IDs outside0–4 remain upstream; no new performance
+Native Zibo ID-1 uses the same800 table. Existing aliases/MAX/BBJ IDs outside
+-1 and0–4 remain upstream; no new performance
 data is invented for them. No changes to AP logic, plugin binary or ACF.
 
 ## Owner-chain closure design
 
 | Surface | Contract |
 | --- | --- |
-| Inputs | APPROACH gross weight in1000lb, runtime variant0–4; envelope input locally converted from1000kg |
+| Inputs | APPROACH gross weight in1000lb, runtime variant-1/0–4; envelope input locally converted from1000kg |
 | Producer | Pure calculate() interpolates all three rows from the same bracket; saturates endpoints; no scalar tuning |
 | F30/F40 | Hook at start of vref30_40 returns unrounded FCOM references, retaining existing publisher rounding |
 | Plugin F15 | B738_calc_vref continues publishing F40+20; compiled VNAV consumer remains on its existing maneuver contract |
@@ -32,7 +33,7 @@ Mac/Windows equivalence was not separately checked for this package.
 
 The kg/lb error is already in upstream Lua: total_weight_t is sim mass/1000
 in kg; vref30_40 expects klb. The hook corrects this call for supported
-LevelUp variants. Surrounding stall/mass formulas retain kg. The800 envelope
+Zibo/LevelUp variants. Surrounding stall/mass formulas retain kg. The800 envelope
 uses its separate stall-model branch, not the lookup output.
 
 ## Derived from the descent installer
@@ -55,13 +56,40 @@ Catalog data is prepared locally, not added to the live MTK repository.
   FMC selection paths and original-plugin consumer separation.
 - Source compatibility/composition with VNAV, W&B, FANS and optional MTK
   modules; especially modules touching B738_calc_min_max_spd or B738_calc.
-- Standalone LF/CRLF install/reinstall/uninstall, missing/duplicate/modified
-  markers, unsupported functions, rollback and unrelated patch preservation.
+- Standalone install/repeat/uninstall passes with a synthetic CRLF aircraft;
+  missing/duplicate/modified markers, real upstream functions, rollback and
+  unrelated patch preservation remain open.
 - MTK native parser/planner, catalog-group composition, install/restore and
   ownership behavior; no claim of MTK install validation from schema inspection.
 - FCOM knots/midpoints/endpoints, all variants, invalid/reset and variant
   switch, FMC F15 selection, no unintended VNAV maneuver-speed reduction.
-- Lua syntax and simulator validation. No tests have been run or authorized.
+- Lua runtime and simulator validation. Focused archive/catalog and synthetic
+  standalone lifecycle tests pass; production MTK loader accepts the ZIP.
 - User authorized public GitHub repository, initial commit/push and first
   preview release. This publication does not close the validation gates above.
   Live MTK catalog publication and aircraft installation are separate.
+
+## Native-Zibo extension (preview2)
+
+Zibo's native b737_variant initializer/reset is -1 in the reconstructed
+plugin. The upstream Lua fallback uses the800 table for it. The payload now
+explicitly supports -1 and maps it to the same model as LevelUp0; invalid
+other IDs still return nil. No table entries or hooks change. Native Zibo's
+F30/F40 outputs retain their table values; the meaningful change is tabulated
+F15 in FMC display/selection, without changing the plugin-facing F15 alias.
+This avoids lowering its normal VNAV Flaps15 maneuver reference.
+
+MTK supportedProducts includes both families; the optional vref member is
+included in both maintenance-group catalog previews. Package ID, repository,
+payload filename and hook revision are intentionally retained for updates.
+The standalone installer accepts the exact released preview1 module hash;
+all other foreign payloads still block. MTK copy target sourceSha256 includes
+that known old module. No new hook body or legacy hook replacement is needed.
+
+tools/refresh_metadata.py derives both MTK hook payloads and all integrity
+metadata from the canonical spec and table module. `tools/build_package.py`
+assembles and verifies the dual-layout archive. Focused archive/catalog and
+synthetic standalone lifecycle tests plus production MTK loader smoke passed.
+Independent review and simulator validation remain open.
+Add native-1/unknown-negative checks, preview1-to2 upgrade/restore, and both
+MTK group paths to the validation matrix before a production release.

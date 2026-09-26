@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "package": "wahltho.levelup-737ng.vref",
-  "version": "v0.1.0-preview.1",
+  "version": "v0.1.0-preview.2",
   "targets": [
     {
       "path": "plugins/xlua/scripts/B738.calc/B738.calc.lua",
@@ -101,5 +101,8 @@
         }
       ]
     }
+  ],
+  "legacyPayloadSha256": [
+    "d30d810453b9cae3ac6ab934b9e2528be531ea81798def635f3115445f4e1a10"
   ]
 }

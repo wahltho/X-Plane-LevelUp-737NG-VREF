@@ -1,3 +1,16 @@
+# v0.1.0-preview.2
+
+- Adds native Zibo737-800X (variant-1) using the existing800 FCOM table.
+- Corrects native-Zibo FMC landing VREF15 while retaining the compiled
+  plugin's Flaps15 maneuver-speed reference.
+- Adds native MTK support for both Zibo and LevelUp maintenance groups.
+- Retains package identity and existing hooks; permits exact preview1
+  table-module upgrades and preserves rejection of unknown modified modules.
+- Focused archive/catalog and standalone synthetic-aircraft install/repeat/
+  uninstall tests pass; MTK's production loader accepts the schema-3 ZIP.
+  Full MTK install/restore, Lua runtime, independent review and simulator
+  validation remain open.
+
 # v0.1.0-preview.1
 
 First experimental LevelUp 737NG VREF package for the upstream .35 Lua/plugin

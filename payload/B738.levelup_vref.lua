@@ -1,4 +1,4 @@
--- LevelUp VREF, v0.1.0-preview.1. Simulator use only.
+-- Zibo / LevelUp VREF, v0.1.0-preview.2. Simulator use only.
 -- INTENTIONAL FIX against .35: source-backed landing reference speeds.
 -- FCOM PI.10.4 / PI.20.6 / PI.40.4 / PI.50.4 / PI.70.4.
 -- Local tables avoid XLua global-table registration and cross-script state.
@@ -44,13 +44,16 @@ local function finite(value)
     return type(value) == "number" and value == value and value > -math.huge and value < math.huge
 end
 local function supported(variant)
-    return finite(variant) and variant == math.floor(variant) and tables[variant] ~= nil
+    return finite(variant) and variant == math.floor(variant)
+        and (variant == -1 or tables[variant] ~= nil)
 end
 local function calculate(weight_klb, variant)
     if not supported(variant) or not finite(weight_klb) or weight_klb <= 0 then
         return nil
     end
-    local model = tables[variant]
+    -- Native Zibo is -1; it uses the same FCOM -800 reference as LevelUp ID0.
+    -- Other negative/unknown IDs retain upstream behavior through the caller.
+    local model = tables[variant == -1 and 0 or variant]
     local weight = model.kg and weight_klb / KGS_LBS or weight_klb
     local count = #model.weight
     weight = math.max(model.weight[1], math.min(model.weight[count], weight))
@@ -70,4 +73,4 @@ local function calculate(weight_klb, variant)
     end
     return interpolate(model.f30), interpolate(model.f40), interpolate(model.f15)
 end
-return { calculate = calculate, supported = supported, version = "v0.1.0-preview.1" }
+return { calculate = calculate, supported = supported, version = "v0.1.0-preview.2" }
