@@ -1,3 +1,19 @@
+# v0.1.0-preview.3
+
+Requires **X-Plane 737NG Maintenance Toolkit 0.21.2 or newer** for managed
+installation. Simulator validation remains open.
+
+Fixes a source-confirmed activation blocker in preview1/2: the original XLua
+dofile discards return values, so the previous loader always fell back to the
+upstream calculations. The table API now passes through a private raw_table
+namespace slot. Includes exact standalone migration from the prior loaders
+and payloads. MTK uses the new versioned marker migration contract; unchanged
+managed installations upgrade and Restore, while independently changed managed
+scripts block before mutation. Hook insertion uses marker identity, preserving
+independent content between anchors and blocks. Focused standalone/XLua tests
+and real local MTK lifecycle tests pass; simulator validation and coordinated
+publication remain open.
+
 # v0.1.0-preview.2
 
 - Adds native Zibo737-800X (variant-1) using the existing800 FCOM table.

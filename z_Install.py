@@ -51,10 +51,13 @@ def strip_ours(source: bytes, edits: list[dict]) -> bytes:
         counts = source.count(begin), source.count(end)
         if counts == (0, 0):
             continue
-        if counts != (1, 1) or source.count(block) != 1:
+        candidates = [block] + [("\n".join(lines) + "\n").encode("ascii")
+                                for lines in edit.get("legacyBlocks", [])]
+        matches = [candidate for candidate in candidates if source.count(candidate) == 1]
+        if counts != (1, 1) or len(matches) != 1:
             raise ValueError("Modified/duplicate/incomplete VREF block: " + edit["id"])
         restore = (edit["anchor"] + "\n").encode("ascii") if edit["mode"] == "replace" else b""
-        source = source.replace(block, restore, 1)
+        source = source.replace(matches[0], restore, 1)
     if b"LEVELUP_VREF" in source:
         raise ValueError("Unknown VREF markers remain; refusing mixed package versions")
     return source

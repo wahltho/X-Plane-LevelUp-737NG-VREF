@@ -1,7 +1,7 @@
--- Zibo / LevelUp VREF, v0.1.0-preview.2. Simulator use only.
+-- Zibo / LevelUp VREF, v0.1.0-preview.3. Simulator use only.
 -- INTENTIONAL FIX against .35: source-backed landing reference speeds.
 -- FCOM PI.10.4 / PI.20.6 / PI.40.4 / PI.50.4 / PI.70.4.
--- Local tables avoid XLua global-table registration and cross-script state.
+-- Data stays local; the API is published in the caller's private XLua namespace.
 local tables = {
     [0] = { -- 737-800; table weight in 1000 kg
         kg = true,
@@ -73,4 +73,7 @@ local function calculate(weight_klb, variant)
     end
     return interpolate(model.f30), interpolate(model.f40), interpolate(model.f15)
 end
-return { calculate = calculate, supported = supported, version = "v0.1.0-preview.2" }
+-- Stock XLua dofile discards chunk return values (init.lua:449-460).
+-- raw_table publishes an ordinary table inside this script namespace only.
+raw_table("B738_levelup_vref_module")
+B738_levelup_vref_module = { calculate = calculate, supported = supported, version = "v0.1.0-preview.3" }

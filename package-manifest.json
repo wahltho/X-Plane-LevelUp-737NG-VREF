@@ -2,7 +2,7 @@
   "schemaVersion": 3,
   "packageType": "compatibilityPackage",
   "packageId": "wahltho.levelup-737ng.vref",
-  "packageVersion": "0.1.0-preview.2",
+  "packageVersion": "0.1.0-preview.3",
   "repositoryUrl": "https://github.com/wahltho/X-Plane-LevelUp-737NG-VREF",
   "aircraftFamily": "Zibo B737-800X and LevelUp 737NG Series for X-Plane 12",
   "supportedProducts": [
@@ -24,18 +24,43 @@
       "payloads": [
         {
           "path": "payload/B738.levelup_vref.lua",
-          "size": 3491,
-          "sha256": "ae700fb36ec14a33e1425e53486b8696d8b3abe87b5151e5bc0bb6e945d50ede"
+          "size": 3700,
+          "sha256": "634dde0acffed25574a4711528312f2b5927929d58e92cea271ab7b6458fe7e2"
+        },
+        {
+          "path": "patches/B738.calc.lua.loader.json",
+          "size": 1349,
+          "sha256": "09165c5432d5af94ab8d65d39e76af5601d12735560f9ed4f665cf6b9a720088"
         },
         {
           "path": "patches/B738.calc.lua.json",
-          "size": 2009,
-          "sha256": "919f004c5b8115ab7f7349eade1ad94f3cada60700d9b2a40aabc4764a6ae9bc"
+          "size": 744,
+          "sha256": "6bfd0e00230655451630098bcf29a11cdfa1c2fa298d960769b3e245f687ee0e"
+        },
+        {
+          "path": "patches/B738.calc.lua.CALC_LOOKUP.guard.json",
+          "size": 592,
+          "sha256": "e55cd4737e5873da5d0841bbf88a650a5cf139dafcd5c859a4f66e45ba0d14c9"
+        },
+        {
+          "path": "patches/B738.calc.lua.CALC_WEIGHT.guard.json",
+          "size": 704,
+          "sha256": "302d8627af698d48b85a1e650647fd21034215bf1c41d99ef67191573760814a"
+        },
+        {
+          "path": "patches/B738.a_fms.lua.loader.json",
+          "size": 1344,
+          "sha256": "247f5615be52eef951f1ac0f3fc8cbc883a11d9b037698f954328dd38a118cb3"
         },
         {
           "path": "patches/B738.a_fms.lua.json",
-          "size": 1717,
-          "sha256": "ce0ab7a2499555cc6ea8b8a04ffeddcfe4d62a74b500a2857ca7bab9757aacbe"
+          "size": 67,
+          "sha256": "5c4f48316eb7b3a35f07c19d9c96b66773bc92b9829e187315f3bee87121840a"
+        },
+        {
+          "path": "patches/B738.a_fms.lua.FMS_LANDING15.guard.json",
+          "size": 904,
+          "sha256": "94017e5a95bed4443798fc7272c1e68e572231ff5e321ca9c6c3658ad7087031"
         }
       ],
       "targets": [
@@ -44,9 +69,16 @@
           "payload": "payload/B738.levelup_vref.lua",
           "relativePath": "plugins/xlua/scripts/B738.calc/B738.levelup_vref.lua",
           "sourceSha256": [
-            "d30d810453b9cae3ac6ab934b9e2528be531ea81798def635f3115445f4e1a10"
+            "d30d810453b9cae3ac6ab934b9e2528be531ea81798def635f3115445f4e1a10",
+            "ae700fb36ec14a33e1425e53486b8696d8b3abe87b5151e5bc0bb6e945d50ede"
           ],
-          "resultSha256": "ae700fb36ec14a33e1425e53486b8696d8b3abe87b5151e5bc0bb6e945d50ede"
+          "resultSha256": "634dde0acffed25574a4711528312f2b5927929d58e92cea271ab7b6458fe7e2"
+        },
+        {
+          "operation": "migrate-marked-block-v1",
+          "payload": "patches/B738.calc.lua.loader.json",
+          "relativePath": "plugins/xlua/scripts/B738.calc/B738.calc.lua",
+          "sourceSha256": []
         },
         {
           "operation": "exact-text-replacements-v1",
@@ -55,17 +87,42 @@
           "sourceSha256": []
         },
         {
+          "operation": "insert-marked-block-v1",
+          "payload": "patches/B738.calc.lua.CALC_LOOKUP.guard.json",
+          "relativePath": "plugins/xlua/scripts/B738.calc/B738.calc.lua",
+          "sourceSha256": []
+        },
+        {
+          "operation": "insert-marked-block-v1",
+          "payload": "patches/B738.calc.lua.CALC_WEIGHT.guard.json",
+          "relativePath": "plugins/xlua/scripts/B738.calc/B738.calc.lua",
+          "sourceSha256": []
+        },
+        {
           "operation": "copy-file-v1",
           "payload": "payload/B738.levelup_vref.lua",
           "relativePath": "plugins/xlua/scripts/B738.a_fms/B738.levelup_vref.lua",
           "sourceSha256": [
-            "d30d810453b9cae3ac6ab934b9e2528be531ea81798def635f3115445f4e1a10"
+            "d30d810453b9cae3ac6ab934b9e2528be531ea81798def635f3115445f4e1a10",
+            "ae700fb36ec14a33e1425e53486b8696d8b3abe87b5151e5bc0bb6e945d50ede"
           ],
-          "resultSha256": "ae700fb36ec14a33e1425e53486b8696d8b3abe87b5151e5bc0bb6e945d50ede"
+          "resultSha256": "634dde0acffed25574a4711528312f2b5927929d58e92cea271ab7b6458fe7e2"
+        },
+        {
+          "operation": "migrate-marked-block-v1",
+          "payload": "patches/B738.a_fms.lua.loader.json",
+          "relativePath": "plugins/xlua/scripts/B738.a_fms/B738.a_fms.lua",
+          "sourceSha256": []
         },
         {
           "operation": "exact-text-replacements-v1",
           "payload": "patches/B738.a_fms.lua.json",
+          "relativePath": "plugins/xlua/scripts/B738.a_fms/B738.a_fms.lua",
+          "sourceSha256": []
+        },
+        {
+          "operation": "insert-marked-block-v1",
+          "payload": "patches/B738.a_fms.lua.FMS_LANDING15.guard.json",
           "relativePath": "plugins/xlua/scripts/B738.a_fms/B738.a_fms.lua",
           "sourceSha256": []
         }

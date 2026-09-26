@@ -1,35 +1,55 @@
 {
   "schemaVersion": 1,
   "packageId": "wahltho.levelup-737ng.vref",
-  "packageVersion": "0.1.0-preview.2",
+  "packageVersion": "0.1.0-preview.3",
   "files": {
     "z_Install.py": {
-      "size": 7959,
-      "sha256": "9ed5fb6056a1d25e39dbfc585407bde13c2e3861eb41690edc5feb9534c41a42"
+      "size": 8196,
+      "sha256": "b0d47a84fdaab6baffb4b1c8111a9158369247280d56f4086291930728356cf2"
     },
     "patch-spec.json": {
-      "size": 4565,
-      "sha256": "72aab84b7284b87ef07e9c10e30e79f1d72543f9a0b0690a4573db698fd0bc7a"
+      "size": 6229,
+      "sha256": "bbb5d6d39b171d23ff9a58d230bd54f46c11ad496d9739e487330fe1b59ce816"
     },
     "package-manifest.json": {
-      "size": 2693,
-      "sha256": "3eaf9d1c4625d6d5f948c1287f480e10bd09d6844e14a4dc13cea1cfd6a79e62"
+      "size": 5017,
+      "sha256": "121e0485b392ddddaf8e9a158bed48f8d726c994962fe8c3290bf8eed9993acf"
     },
     "tools/refresh_metadata.py": {
-      "size": 4162,
-      "sha256": "5057a1193afab172b41cd2d9257800671ac0dcb7a161ef162ed4b6d7fa86afa1"
+      "size": 5767,
+      "sha256": "90b716cf62fd3e7626c20ef7d0bb8160f6b8c34f488bc0f8f8ddc7c815922a03"
     },
     "payload/B738.levelup_vref.lua": {
-      "size": 3491,
-      "sha256": "ae700fb36ec14a33e1425e53486b8696d8b3abe87b5151e5bc0bb6e945d50ede"
+      "size": 3700,
+      "sha256": "634dde0acffed25574a4711528312f2b5927929d58e92cea271ab7b6458fe7e2"
+    },
+    "patches/B738.calc.lua.loader.json": {
+      "size": 1349,
+      "sha256": "09165c5432d5af94ab8d65d39e76af5601d12735560f9ed4f665cf6b9a720088"
     },
     "patches/B738.calc.lua.json": {
-      "size": 2009,
-      "sha256": "919f004c5b8115ab7f7349eade1ad94f3cada60700d9b2a40aabc4764a6ae9bc"
+      "size": 744,
+      "sha256": "6bfd0e00230655451630098bcf29a11cdfa1c2fa298d960769b3e245f687ee0e"
+    },
+    "patches/B738.calc.lua.CALC_LOOKUP.guard.json": {
+      "size": 592,
+      "sha256": "e55cd4737e5873da5d0841bbf88a650a5cf139dafcd5c859a4f66e45ba0d14c9"
+    },
+    "patches/B738.calc.lua.CALC_WEIGHT.guard.json": {
+      "size": 704,
+      "sha256": "302d8627af698d48b85a1e650647fd21034215bf1c41d99ef67191573760814a"
+    },
+    "patches/B738.a_fms.lua.loader.json": {
+      "size": 1344,
+      "sha256": "247f5615be52eef951f1ac0f3fc8cbc883a11d9b037698f954328dd38a118cb3"
     },
     "patches/B738.a_fms.lua.json": {
-      "size": 1717,
-      "sha256": "ce0ab7a2499555cc6ea8b8a04ffeddcfe4d62a74b500a2857ca7bab9757aacbe"
+      "size": 67,
+      "sha256": "5c4f48316eb7b3a35f07c19d9c96b66773bc92b9829e187315f3bee87121840a"
+    },
+    "patches/B738.a_fms.lua.FMS_LANDING15.guard.json": {
+      "size": 904,
+      "sha256": "94017e5a95bed4443798fc7272c1e68e572231ff5e321ca9c6c3658ad7087031"
     }
   }
 }

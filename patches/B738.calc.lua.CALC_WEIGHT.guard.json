@@ -1,0 +1,19 @@
+{
+  "format": "insert-marked-block-v1",
+  "name": "CALC_WEIGHT_GUARD",
+  "beginMarker": "-- BEGIN LEVELUP_VREF CALC_WEIGHT",
+  "endMarker": "-- END LEVELUP_VREF CALC_WEIGHT",
+  "anchorLines": [
+    "\tvref_30, vref_x = vref30_40(total_weight_t)"
+  ],
+  "position": "after",
+  "contentLines": [
+    "-- package-version|v0.1.0-preview.1",
+    "    -- INTENTIONAL FIX: envelope mass is 1000 kg; vref30_40 expects 1000 lb.",
+    "    local levelup_vref_weight = total_weight_t",
+    "    if levelup_vref ~= nil and levelup_vref.supported(B738DR_b737_variant) then",
+    "        levelup_vref_weight = total_weight_t * KGS_LBS",
+    "    end",
+    "    vref_30, vref_x = vref30_40(levelup_vref_weight)"
+  ]
+}

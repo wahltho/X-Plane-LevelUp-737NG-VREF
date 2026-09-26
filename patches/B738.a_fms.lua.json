@@ -1,42 +1,4 @@
 {
   "format": "exact-text-replacements-v1",
-  "replacements": [
-    {
-      "name": "FMS_LOAD",
-      "oldLines": [
-        "jit.off()"
-      ],
-      "newLines": [
-        "jit.off()",
-        "-- BEGIN LEVELUP_VREF FMS_LOAD",
-        "-- package-version|v0.1.0-preview.1",
-        "local levelup_vref_ok, levelup_vref = pcall(dofile, \"B738.levelup_vref.lua\")",
-        "if not levelup_vref_ok or type(levelup_vref) ~= \"table\" or type(levelup_vref.calculate) ~= \"function\" or type(levelup_vref.supported) ~= \"function\" then",
-        "    levelup_vref = nil",
-        "    print(\"LevelUp VREF patch inactive: table module could not be loaded\")",
-        "end",
-        "-- END LEVELUP_VREF FMS_LOAD"
-      ]
-    },
-    {
-      "name": "FMS_LANDING15",
-      "oldLines": [
-        "\tvref_15 = string.format(\"%3d\", B738DR_fms_vref_15)\t-- + B738DR_fms_approach_wind_corr)"
-      ],
-      "newLines": [
-        "\tvref_15 = string.format(\"%3d\", B738DR_fms_vref_15)\t-- + B738DR_fms_approach_wind_corr)",
-        "-- BEGIN LEVELUP_VREF FMS_LANDING15",
-        "-- package-version|v0.1.0-preview.1",
-        "    -- Preserve FMS/vref_15=VREF40+20 for the compiled VNAV maneuver consumer.",
-        "    -- Only the FMC landing reference and both CDU selections use the FCOM F15.",
-        "    if levelup_vref ~= nil and B738DR_fms_vref_40 > 0 then",
-        "        local ok, ref30, ref40, ref15 = pcall(levelup_vref.calculate, B738DR_fmc_gw_app, B738DR_b737_variant)",
-        "        if ok and ref15 ~= nil then",
-        "            vref_15 = string.format(\"%3d\", math.floor(ref15 + 0.5))",
-        "        end",
-        "    end",
-        "-- END LEVELUP_VREF FMS_LANDING15"
-      ]
-    }
-  ]
+  "replacements": []
 }

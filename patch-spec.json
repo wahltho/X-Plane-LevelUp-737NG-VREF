@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "package": "wahltho.levelup-737ng.vref",
-  "version": "v0.1.0-preview.2",
+  "version": "v0.1.0-preview.3",
   "targets": [
     {
       "path": "plugins/xlua/scripts/B738.calc/B738.calc.lua",
@@ -17,13 +17,28 @@
           "anchor": "jit.off()",
           "block": [
             "-- BEGIN LEVELUP_VREF CALC_LOAD",
-            "-- package-version|v0.1.0-preview.1",
-            "local levelup_vref_ok, levelup_vref = pcall(dofile, \"B738.levelup_vref.lua\")",
+            "-- package-version|v0.1.0-preview.3",
+            "raw_table(\"B738_levelup_vref_module\")",
+            "B738_levelup_vref_module = nil",
+            "local levelup_vref_ok = pcall(dofile, \"B738.levelup_vref.lua\")",
+            "local levelup_vref = B738_levelup_vref_module",
             "if not levelup_vref_ok or type(levelup_vref) ~= \"table\" or type(levelup_vref.calculate) ~= \"function\" or type(levelup_vref.supported) ~= \"function\" then",
             "    levelup_vref = nil",
-            "    print(\"LevelUp VREF patch inactive: table module could not be loaded\")",
+            "    print(\"Zibo/LevelUp VREF patch inactive: table module could not be loaded\")",
             "end",
             "-- END LEVELUP_VREF CALC_LOAD"
+          ],
+          "legacyBlocks": [
+            [
+              "-- BEGIN LEVELUP_VREF CALC_LOAD",
+              "-- package-version|v0.1.0-preview.1",
+              "local levelup_vref_ok, levelup_vref = pcall(dofile, \"B738.levelup_vref.lua\")",
+              "if not levelup_vref_ok or type(levelup_vref) ~= \"table\" or type(levelup_vref.calculate) ~= \"function\" or type(levelup_vref.supported) ~= \"function\" then",
+              "    levelup_vref = nil",
+              "    print(\"LevelUp VREF patch inactive: table module could not be loaded\")",
+              "end",
+              "-- END LEVELUP_VREF CALC_LOAD"
+            ]
           ]
         },
         {
@@ -72,13 +87,28 @@
           "anchor": "jit.off()",
           "block": [
             "-- BEGIN LEVELUP_VREF FMS_LOAD",
-            "-- package-version|v0.1.0-preview.1",
-            "local levelup_vref_ok, levelup_vref = pcall(dofile, \"B738.levelup_vref.lua\")",
+            "-- package-version|v0.1.0-preview.3",
+            "raw_table(\"B738_levelup_vref_module\")",
+            "B738_levelup_vref_module = nil",
+            "local levelup_vref_ok = pcall(dofile, \"B738.levelup_vref.lua\")",
+            "local levelup_vref = B738_levelup_vref_module",
             "if not levelup_vref_ok or type(levelup_vref) ~= \"table\" or type(levelup_vref.calculate) ~= \"function\" or type(levelup_vref.supported) ~= \"function\" then",
             "    levelup_vref = nil",
-            "    print(\"LevelUp VREF patch inactive: table module could not be loaded\")",
+            "    print(\"Zibo/LevelUp VREF patch inactive: table module could not be loaded\")",
             "end",
             "-- END LEVELUP_VREF FMS_LOAD"
+          ],
+          "legacyBlocks": [
+            [
+              "-- BEGIN LEVELUP_VREF FMS_LOAD",
+              "-- package-version|v0.1.0-preview.1",
+              "local levelup_vref_ok, levelup_vref = pcall(dofile, \"B738.levelup_vref.lua\")",
+              "if not levelup_vref_ok or type(levelup_vref) ~= \"table\" or type(levelup_vref.calculate) ~= \"function\" or type(levelup_vref.supported) ~= \"function\" then",
+              "    levelup_vref = nil",
+              "    print(\"LevelUp VREF patch inactive: table module could not be loaded\")",
+              "end",
+              "-- END LEVELUP_VREF FMS_LOAD"
+            ]
           ]
         },
         {
@@ -103,6 +133,7 @@
     }
   ],
   "legacyPayloadSha256": [
-    "d30d810453b9cae3ac6ab934b9e2528be531ea81798def635f3115445f4e1a10"
+    "d30d810453b9cae3ac6ab934b9e2528be531ea81798def635f3115445f4e1a10",
+    "ae700fb36ec14a33e1425e53486b8696d8b3abe87b5151e5bc0bb6e945d50ede"
   ]
 }

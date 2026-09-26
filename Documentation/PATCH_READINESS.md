@@ -1,5 +1,9 @@
 # Lua package preparation
 
+Current correction: preview3 fixes the original-XLua module activation blocker
+found during source review. See SOURCE_REVIEW_2026_09_26.md. Earlier statements
+about preview1/2 module loading are superseded; executable validation is open.
+
 ## Reference and scope
 
 Reference scripts: original B738X_XP12_4_05_35; the locally supplied
@@ -93,3 +97,21 @@ synthetic standalone lifecycle tests plus production MTK loader smoke passed.
 Independent review and simulator validation remain open.
 Add native-1/unknown-negative checks, preview1-to2 upgrade/restore, and both
 MTK group paths to the validation matrix before a production release.
+
+## Independent review / MTK dependency update
+
+Prepared preview3 remains **NO-GO**. See INDEPENDENT_REVIEW_2026_09_26.md and
+MTK_REQUIRED_CONTRACT_2026_09_26.md. Focused Python suite 8/8 methods passes;
+original XLua namespace loading is exercised under LuaJIT. The direct MTK
+handler probe reproduces the composed-current upgrade failure in both scripts.
+No complete MTK migration/Restore or simulator claim; shared handler/ownership
+support must be agreed before this package can safely complete that lifecycle.
+
+## Final restricted-policy validation (supersedes migration NO-GO above)
+
+Local source now independently GO for unchanged managed upgrades and fail-closed
+rejection of independently changed managed Lua sources. Real MTK E2E: 5 complete
+install/update/repeat/Restore scenarios PASS, 3 composed states safely BLOCKED,
+40 corrupt-marker transactions safely BLOCKED. Python 9/9 PASS. See
+MTK_OPERATION_INTEGRATION_2026_09_26.md and the final independent review addendum.
+No commit/push/release or simulator validation; coordinated release gate remains.

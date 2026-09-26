@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+ <PropertyGroup><OutputType>Exe</OutputType><TargetFramework>net10.0</TargetFramework><ImplicitUsings>enable</ImplicitUsings><Nullable>enable</Nullable><MtkRoot Condition="'$(MtkRoot)'==''">/Users/wahltho/Documents/Projects/Level Up Nav Table Updater</MtkRoot></PropertyGroup>
+ <ItemGroup>
+  <Compile Include="$(MtkRoot)/src/LevelUp.NavTableUpdater.Core/Content/PatchHandlers/ExactTextReplacementsPatchHandler.cs" Link="ExactTextReplacementsPatchHandler.cs" />
+  <Compile Include="$(MtkRoot)/src/LevelUp.NavTableUpdater.Core/Content/PatchHandlers/MarkedBlockMigrationPatchHandler.cs" Link="MarkedBlockMigrationPatchHandler.cs" />
+  <Compile Include="$(MtkRoot)/src/LevelUp.NavTableUpdater.Core/Content/PatchHandlers/MarkedBlockInsertionPatchHandler.cs" Link="MarkedBlockInsertionPatchHandler.cs" />
+  <Compile Include="$(MtkRoot)/src/LevelUp.NavTableUpdater.Core/Content/PatchHandlers/Utf8PatchText.cs" Link="Utf8PatchText.cs" />
+  <Compile Include="$(MtkRoot)/src/LevelUp.NavTableUpdater.Core/Content/PatchHandlers/PatchJson.cs" Link="PatchJson.cs" />
+ </ItemGroup>
+</Project>

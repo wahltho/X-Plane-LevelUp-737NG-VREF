@@ -30,23 +30,49 @@ def main():
     payloads = [metadata("payload/B738.levelup_vref.lua")]
     targets = []
     for target in spec["targets"]:
-        relative = "patches/" + Path(target["path"]).name + ".json"
-        replacements = []
-        for edit in target["edits"]:
-            prefix = [edit["anchor"]] if edit["mode"] == "after" else []
-            replacements.append({
-                "name": edit["id"], "oldLines": [edit["anchor"]],
-                "newLines": prefix + edit["block"],
+        name = Path(target["path"]).name
+        targets.append({
+            "operation": "copy-file-v1", "payload": payloads[0]["path"],
+            "relativePath": (Path(target["path"]).parent / "B738.levelup_vref.lua").as_posix(),
+            "sourceSha256": spec.get("legacyPayloadSha256", []), "resultSha256": payloads[0]["sha256"],
+        })
+
+        def add_operation(relative, document):
+            write(relative, document)
+            payloads.append(metadata(relative))
+            targets.append({"operation": document["format"], "payload": relative,
+                            "relativePath": target["path"], "sourceSha256": []})
+
+        loader, *remaining = target["edits"]
+        if not loader["id"].endswith("_LOAD") or loader["mode"] != "after":
+            raise ValueError("Expected a leading loader insertion")
+        add_operation("patches/" + name + ".loader.json", {
+            "format": "migrate-marked-block-v1", "name": loader["id"],
+            "beginMarker": loader["block"][0], "endMarker": loader["block"][-1],
+            "anchorLines": [loader["anchor"]], "position": "after",
+            "contentLines": loader["block"][1:-1], "legacyBlocks": loader.get("legacyBlocks", []),
+        })
+        # Replacement hooks need their original line restored on removal.
+        # Insertion hooks must use marker identity rather than adjacency to
+        # their anchor: independent edits can legitimately separate the two.
+        replacements = [{"name": edit["id"], "oldLines": [edit["anchor"]],
+                         "newLines": edit["block"]}
+                        for edit in remaining if edit["mode"] == "replace"]
+        add_operation("patches/" + name + ".json", {
+            "format": "exact-text-replacements-v1", "replacements": replacements,
+        })
+        # Planner stages all operations before writing. Each insertion is
+        # marker-aware; for replacement hooks this is an exact-current guard
+        # after the replacement, never a second insertion on accepted input.
+        for edit in remaining:
+            if edit["mode"] not in ("after", "replace"):
+                raise ValueError("Unsupported non-loader hook mode")
+            add_operation("patches/" + name + "." + edit["id"] + ".guard.json", {
+                "format": "insert-marked-block-v1", "name": edit["id"] + "_GUARD",
+                "beginMarker": edit["block"][0], "endMarker": edit["block"][-1],
+                "anchorLines": [edit["anchor"]], "position": "after",
+                "contentLines": edit["block"][1:-1],
             })
-        write(relative, {"format": "exact-text-replacements-v1", "replacements": replacements})
-        payloads.append(metadata(relative))
-        targets.extend([
-            {"operation": "copy-file-v1", "payload": payloads[0]["path"],
-             "relativePath": (Path(target["path"]).parent / "B738.levelup_vref.lua").as_posix(),
-             "sourceSha256": spec.get("legacyPayloadSha256", []), "resultSha256": payloads[0]["sha256"]},
-            {"operation": "exact-text-replacements-v1", "payload": relative,
-             "relativePath": target["path"], "sourceSha256": []},
-        ])
     manifest["modules"][0]["payloads"] = payloads
     manifest["modules"][0]["targets"] = targets
     manifest["modules"][0]["description"] = (

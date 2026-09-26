@@ -1,0 +1,19 @@
+{
+  "format": "insert-marked-block-v1",
+  "name": "CALC_LOOKUP_GUARD",
+  "beginMarker": "-- BEGIN LEVELUP_VREF CALC_LOOKUP",
+  "endMarker": "-- END LEVELUP_VREF CALC_LOOKUP",
+  "anchorLines": [
+    "function vref30_40(in_gw)"
+  ],
+  "position": "after",
+  "contentLines": [
+    "-- package-version|v0.1.0-preview.1",
+    "    if levelup_vref ~= nil then",
+    "        local ok, ref30, ref40 = pcall(levelup_vref.calculate, in_gw, B738DR_b737_variant)",
+    "        if ok and ref30 ~= nil and ref40 ~= nil then",
+    "            return ref30, ref40",
+    "        end",
+    "    end"
+  ]
+}

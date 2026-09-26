@@ -1,0 +1,21 @@
+{
+  "format": "insert-marked-block-v1",
+  "name": "FMS_LANDING15_GUARD",
+  "beginMarker": "-- BEGIN LEVELUP_VREF FMS_LANDING15",
+  "endMarker": "-- END LEVELUP_VREF FMS_LANDING15",
+  "anchorLines": [
+    "\tvref_15 = string.format(\"%3d\", B738DR_fms_vref_15)\t-- + B738DR_fms_approach_wind_corr)"
+  ],
+  "position": "after",
+  "contentLines": [
+    "-- package-version|v0.1.0-preview.1",
+    "    -- Preserve FMS/vref_15=VREF40+20 for the compiled VNAV maneuver consumer.",
+    "    -- Only the FMC landing reference and both CDU selections use the FCOM F15.",
+    "    if levelup_vref ~= nil and B738DR_fms_vref_40 > 0 then",
+    "        local ok, ref30, ref40, ref15 = pcall(levelup_vref.calculate, B738DR_fmc_gw_app, B738DR_b737_variant)",
+    "        if ok and ref15 ~= nil then",
+    "            vref_15 = string.format(\"%3d\", math.floor(ref15 + 0.5))",
+    "        end",
+    "    end"
+  ]
+}
