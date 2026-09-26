@@ -1,0 +1,105 @@
+{
+  "schema": 1,
+  "package": "wahltho.levelup-737ng.vref",
+  "version": "v0.1.0-preview.1",
+  "targets": [
+    {
+      "path": "plugins/xlua/scripts/B738.calc/B738.calc.lua",
+      "functions": {
+        "vref30_40": "d3fc01767e09b32eb97f58a105a421d22d52f8e1cac86fe076cdead074ed2fab",
+        "B738_calc_vref": "34d8837329fbabb02059b125bab8d79d2ce6972fe0182b4da8491b2d273f5c07",
+        "B738_calc_min_max_spd": "67a558212b413af6b1d508a10705fc5636da115df223bab429e1244a0abdc93c"
+      },
+      "edits": [
+        {
+          "id": "CALC_LOAD",
+          "mode": "after",
+          "anchor": "jit.off()",
+          "block": [
+            "-- BEGIN LEVELUP_VREF CALC_LOAD",
+            "-- package-version|v0.1.0-preview.1",
+            "local levelup_vref_ok, levelup_vref = pcall(dofile, \"B738.levelup_vref.lua\")",
+            "if not levelup_vref_ok or type(levelup_vref) ~= \"table\" or type(levelup_vref.calculate) ~= \"function\" or type(levelup_vref.supported) ~= \"function\" then",
+            "    levelup_vref = nil",
+            "    print(\"LevelUp VREF patch inactive: table module could not be loaded\")",
+            "end",
+            "-- END LEVELUP_VREF CALC_LOAD"
+          ]
+        },
+        {
+          "id": "CALC_LOOKUP",
+          "mode": "after",
+          "anchor": "function vref30_40(in_gw)",
+          "block": [
+            "-- BEGIN LEVELUP_VREF CALC_LOOKUP",
+            "-- package-version|v0.1.0-preview.1",
+            "    if levelup_vref ~= nil then",
+            "        local ok, ref30, ref40 = pcall(levelup_vref.calculate, in_gw, B738DR_b737_variant)",
+            "        if ok and ref30 ~= nil and ref40 ~= nil then",
+            "            return ref30, ref40",
+            "        end",
+            "    end",
+            "-- END LEVELUP_VREF CALC_LOOKUP"
+          ]
+        },
+        {
+          "id": "CALC_WEIGHT",
+          "mode": "replace",
+          "anchor": "\tvref_30, vref_x = vref30_40(total_weight_t)",
+          "block": [
+            "-- BEGIN LEVELUP_VREF CALC_WEIGHT",
+            "-- package-version|v0.1.0-preview.1",
+            "    -- INTENTIONAL FIX: envelope mass is 1000 kg; vref30_40 expects 1000 lb.",
+            "    local levelup_vref_weight = total_weight_t",
+            "    if levelup_vref ~= nil and levelup_vref.supported(B738DR_b737_variant) then",
+            "        levelup_vref_weight = total_weight_t * KGS_LBS",
+            "    end",
+            "    vref_30, vref_x = vref30_40(levelup_vref_weight)",
+            "-- END LEVELUP_VREF CALC_WEIGHT"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "plugins/xlua/scripts/B738.a_fms/B738.a_fms.lua",
+      "functions": {
+        "B738_calc": "05c0bf82044471db83c26d11c9f986e005c109287ab957f9582ed53a3242cee9"
+      },
+      "edits": [
+        {
+          "id": "FMS_LOAD",
+          "mode": "after",
+          "anchor": "jit.off()",
+          "block": [
+            "-- BEGIN LEVELUP_VREF FMS_LOAD",
+            "-- package-version|v0.1.0-preview.1",
+            "local levelup_vref_ok, levelup_vref = pcall(dofile, \"B738.levelup_vref.lua\")",
+            "if not levelup_vref_ok or type(levelup_vref) ~= \"table\" or type(levelup_vref.calculate) ~= \"function\" or type(levelup_vref.supported) ~= \"function\" then",
+            "    levelup_vref = nil",
+            "    print(\"LevelUp VREF patch inactive: table module could not be loaded\")",
+            "end",
+            "-- END LEVELUP_VREF FMS_LOAD"
+          ]
+        },
+        {
+          "id": "FMS_LANDING15",
+          "mode": "after",
+          "anchor": "\tvref_15 = string.format(\"%3d\", B738DR_fms_vref_15)\t-- + B738DR_fms_approach_wind_corr)",
+          "block": [
+            "-- BEGIN LEVELUP_VREF FMS_LANDING15",
+            "-- package-version|v0.1.0-preview.1",
+            "    -- Preserve FMS/vref_15=VREF40+20 for the compiled VNAV maneuver consumer.",
+            "    -- Only the FMC landing reference and both CDU selections use the FCOM F15.",
+            "    if levelup_vref ~= nil and B738DR_fms_vref_40 > 0 then",
+            "        local ok, ref30, ref40, ref15 = pcall(levelup_vref.calculate, B738DR_fmc_gw_app, B738DR_b737_variant)",
+            "        if ok and ref15 ~= nil then",
+            "            vref_15 = string.format(\"%3d\", math.floor(ref15 + 0.5))",
+            "        end",
+            "    end",
+            "-- END LEVELUP_VREF FMS_LANDING15"
+          ]
+        }
+      ]
+    }
+  ]
+}

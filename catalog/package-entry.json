@@ -1,0 +1,17 @@
+{
+  "packageId": "wahltho.levelup-737ng.vref",
+  "displayName": "VREF tables",
+  "description": "FCOM landing-reference speeds for LevelUp 737NG, including a separate 900ER table. Simulator validation pending.",
+  "category": "compatibilityPackage",
+  "activation": "managed",
+  "supportedProducts": [
+    "levelup-737ng"
+  ],
+  "repositoryUrl": "https://github.com/wahltho/X-Plane-LevelUp-737NG-VREF",
+  "restartRequired": true,
+  "distribution": {
+    "kind": "gitHubReleaseArchive",
+    "assetNamePattern": "X-Plane-LevelUp-737NG-VREF-v*.zip",
+    "manifestSchemaVersion": 3
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 3,
+  "packageType": "compatibilityPackage",
+  "packageId": "wahltho.levelup-737ng.vref",
+  "packageVersion": "0.1.0-preview.1",
+  "repositoryUrl": "https://github.com/wahltho/X-Plane-LevelUp-737NG-VREF",
+  "aircraftFamily": "LevelUp 737NG Series for X-Plane 12",
+  "supportedProducts": [
+    "levelup-737ng"
+  ],
+  "restartRequired": true,
+  "supportedUpstreamReleases": [],
+  "modules": [
+    {
+      "moduleId": "vref",
+      "displayName": "VREF tables",
+      "description": "FCOM VREF tables with separate 900ER data and FMC landing VREF15; preserves compiled VNAV maneuver reference.",
+      "policy": "optional",
+      "defaultEnabled": false,
+      "installationOrder": 80,
+      "requires": [],
+      "conflictsWith": [],
+      "payloads": [
+        {
+          "path": "payload/B738.levelup_vref.lua",
+          "size": 3276,
+          "sha256": "d30d810453b9cae3ac6ab934b9e2528be531ea81798def635f3115445f4e1a10"
+        },
+        {
+          "path": "patches/B738.calc.lua.json",
+          "size": 2009,
+          "sha256": "919f004c5b8115ab7f7349eade1ad94f3cada60700d9b2a40aabc4764a6ae9bc"
+        },
+        {
+          "path": "patches/B738.a_fms.lua.json",
+          "size": 1717,
+          "sha256": "ce0ab7a2499555cc6ea8b8a04ffeddcfe4d62a74b500a2857ca7bab9757aacbe"
+        }
+      ],
+      "targets": [
+        {
+          "operation": "copy-file-v1",
+          "payload": "payload/B738.levelup_vref.lua",
+          "relativePath": "plugins/xlua/scripts/B738.calc/B738.levelup_vref.lua",
+          "sourceSha256": [],
+          "resultSha256": "d30d810453b9cae3ac6ab934b9e2528be531ea81798def635f3115445f4e1a10"
+        },
+        {
+          "operation": "exact-text-replacements-v1",
+          "payload": "patches/B738.calc.lua.json",
+          "relativePath": "plugins/xlua/scripts/B738.calc/B738.calc.lua",
+          "sourceSha256": []
+        },
+        {
+          "operation": "copy-file-v1",
+          "payload": "payload/B738.levelup_vref.lua",
+          "relativePath": "plugins/xlua/scripts/B738.a_fms/B738.levelup_vref.lua",
+          "sourceSha256": [],
+          "resultSha256": "d30d810453b9cae3ac6ab934b9e2528be531ea81798def635f3115445f4e1a10"
+        },
+        {
+          "operation": "exact-text-replacements-v1",
+          "payload": "patches/B738.a_fms.lua.json",
+          "relativePath": "plugins/xlua/scripts/B738.a_fms/B738.a_fms.lua",
+          "sourceSha256": []
+        }
+      ]
+    }
+  ]
+}

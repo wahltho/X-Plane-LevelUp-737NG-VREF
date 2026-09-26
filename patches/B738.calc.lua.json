@@ -1,0 +1,57 @@
+{
+  "format": "exact-text-replacements-v1",
+  "replacements": [
+    {
+      "name": "CALC_LOAD",
+      "oldLines": [
+        "jit.off()"
+      ],
+      "newLines": [
+        "jit.off()",
+        "-- BEGIN LEVELUP_VREF CALC_LOAD",
+        "-- package-version|v0.1.0-preview.1",
+        "local levelup_vref_ok, levelup_vref = pcall(dofile, \"B738.levelup_vref.lua\")",
+        "if not levelup_vref_ok or type(levelup_vref) ~= \"table\" or type(levelup_vref.calculate) ~= \"function\" or type(levelup_vref.supported) ~= \"function\" then",
+        "    levelup_vref = nil",
+        "    print(\"LevelUp VREF patch inactive: table module could not be loaded\")",
+        "end",
+        "-- END LEVELUP_VREF CALC_LOAD"
+      ]
+    },
+    {
+      "name": "CALC_LOOKUP",
+      "oldLines": [
+        "function vref30_40(in_gw)"
+      ],
+      "newLines": [
+        "function vref30_40(in_gw)",
+        "-- BEGIN LEVELUP_VREF CALC_LOOKUP",
+        "-- package-version|v0.1.0-preview.1",
+        "    if levelup_vref ~= nil then",
+        "        local ok, ref30, ref40 = pcall(levelup_vref.calculate, in_gw, B738DR_b737_variant)",
+        "        if ok and ref30 ~= nil and ref40 ~= nil then",
+        "            return ref30, ref40",
+        "        end",
+        "    end",
+        "-- END LEVELUP_VREF CALC_LOOKUP"
+      ]
+    },
+    {
+      "name": "CALC_WEIGHT",
+      "oldLines": [
+        "\tvref_30, vref_x = vref30_40(total_weight_t)"
+      ],
+      "newLines": [
+        "-- BEGIN LEVELUP_VREF CALC_WEIGHT",
+        "-- package-version|v0.1.0-preview.1",
+        "    -- INTENTIONAL FIX: envelope mass is 1000 kg; vref30_40 expects 1000 lb.",
+        "    local levelup_vref_weight = total_weight_t",
+        "    if levelup_vref ~= nil and levelup_vref.supported(B738DR_b737_variant) then",
+        "        levelup_vref_weight = total_weight_t * KGS_LBS",
+        "    end",
+        "    vref_30, vref_x = vref30_40(levelup_vref_weight)",
+        "-- END LEVELUP_VREF CALC_WEIGHT"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "packageId": "wahltho.levelup-737ng.vref",
+  "moduleId": "vref",
+  "policy": "optional",
+  "installationOrder": 80,
+  "sourceFormat": "compatibility",
+  "manifestPath": "package-manifest.json",
+  "assetNamePattern": "X-Plane-LevelUp-737NG-VREF-v*.zip"
+}
