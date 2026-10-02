@@ -17,7 +17,7 @@ int positive=0,blocked=0;
 try
 {
  foreach(var family in new[]{"LevelUp","Zibo"})
- foreach(var mode in new[]{"fresh","preview1","preview2","preview1-composed","preview2-composed"})
+ foreach(var mode in new[]{"fresh","preview1","preview2","preview3","preview1-composed","preview2-composed","preview3-composed"})
  {
   if(family=="Zibo" && mode.StartsWith("preview1"))continue; // Released preview1 supports LevelUp only.
   var testRoot=Path.Combine(temporary,family+"-"+mode);var aircraft=Path.Combine(testRoot,"aircraft");Directory.CreateDirectory(aircraft);

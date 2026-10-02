@@ -358,7 +358,7 @@
     {
       "packageId": "wahltho.levelup-737ng.maintenance",
       "displayName": "LevelUp maintenance patches",
-      "description": "VNAV descent tables, FANS CDU and Weight & Balance are required. Calculator, AUTO JETWAY, CPDLC FANS PAGES and Intentional Fixes are optional. Sources update directly from their own releases. VREF tables are optional (prepared preview; validation pending).",
+      "description": "VNAV descent tables, FANS CDU and Weight & Balance are required. Calculator, AUTO JETWAY, CPDLC FANS PAGES and Intentional Fixes are optional. Sources update directly from their own releases. VREF tables (Beta) are optional; simulator validation remains open.",
       "category": "compatibilityPackage",
       "activation": "managed",
       "supportedProducts": [
@@ -447,7 +447,7 @@
     {
       "packageId": "wahltho.zibo-40535.maintenance",
       "displayName": "Zibo optional patches",
-      "description": "Optional VNAV descent tables, Tablet Performance Calculator, AUTO JETWAY, CPDLC FANS PAGES and Intentional Fixes. No patch is required or selected automatically. VREF tables are optional (prepared preview; validation pending).",
+      "description": "Optional VNAV descent tables, Tablet Performance Calculator, AUTO JETWAY, CPDLC FANS PAGES and Intentional Fixes. No patch is required or selected automatically. VREF tables (Beta) are optional; simulator validation remains open.",
       "category": "compatibilityPackage",
       "activation": "managed",
       "supportedProducts": [
@@ -517,8 +517,8 @@
     },
     {
       "packageId": "wahltho.levelup-737ng.vref",
-      "displayName": "VREF tables",
-      "description": "FCOM landing-reference speeds for Zibo and LevelUp 737NG, including separate 900ER data. Validation pending.",
+      "displayName": "VREF tables (Beta)",
+      "description": "Beta: FCOM landing-reference speeds for Zibo and LevelUp 737NG, including separate 900ER data. Optional; simulator validation remains open.",
       "category": "compatibilityPackage",
       "activation": "managed",
       "supportedProducts": [

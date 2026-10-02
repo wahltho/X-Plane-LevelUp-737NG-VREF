@@ -1,23 +1,23 @@
 {
   "schemaVersion": 1,
   "packageId": "wahltho.levelup-737ng.vref",
-  "packageVersion": "0.1.0-preview.3",
+  "packageVersion": "0.1.0-beta.1",
   "files": {
     "z_Install.py": {
       "size": 8196,
       "sha256": "b0d47a84fdaab6baffb4b1c8111a9158369247280d56f4086291930728356cf2"
     },
     "patch-spec.json": {
-      "size": 6229,
-      "sha256": "bbb5d6d39b171d23ff9a58d230bd54f46c11ad496d9739e487330fe1b59ce816"
+      "size": 6226,
+      "sha256": "555303afd7623b79db260b69e39670b42abb2bbde7be5e90822969dde6b0d135"
     },
     "package-manifest.json": {
-      "size": 5017,
-      "sha256": "121e0485b392ddddaf8e9a158bed48f8d726c994962fe8c3290bf8eed9993acf"
+      "size": 5014,
+      "sha256": "7fc6a19504cf2b6d0e2ce3081d4f06f32feff6fa73a1ed18abfb522adfbf329b"
     },
     "tools/refresh_metadata.py": {
-      "size": 5767,
-      "sha256": "90b716cf62fd3e7626c20ef7d0bb8160f6b8c34f488bc0f8f8ddc7c815922a03"
+      "size": 5990,
+      "sha256": "6d94a5c9d4af9f750b8907ae7bdf17e2d9e792b6a0074a7382cf76a67a75b88a"
     },
     "payload/B738.levelup_vref.lua": {
       "size": 3700,

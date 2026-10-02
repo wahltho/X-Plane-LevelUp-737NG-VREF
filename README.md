@@ -6,7 +6,10 @@
 > [wahltho Discord server](https://discord.gg/ySS88PMuyC).
 > Do not contact official aircraft/simulator support channels about this patch.
 
-Version: **0.1.0-preview.3 — XLua loader repair; simulator validation pending.**
+Version: **0.1.0-beta.1 — public Beta; simulator validation pending.**
+This release promotes the reviewed Preview3 runtime unchanged. Table data, Lua
+hooks and the module revision remain byte-identical to Preview3; Beta changes
+release metadata and adds explicit Preview3 upgrade/Restore coverage.
 Preview1/2 do not activate the module under the original .35 XLua loader.
 See [source review](Documentation/SOURCE_REVIEW_2026_09_26.md).
 
@@ -59,15 +62,21 @@ ZIP with both standalone root files and MTK's `modules/vref/` payloads.
 package and optional maintenance-group member (order65, before Intentional Fixes), for both Zibo and
 LevelUp. The complete
 `catalog/content-package-catalog.preview.json` is a review snapshot based on
-the locally inspected MTK catalog1.13.0, with these additions. It is not a new
-published catalog version. Merge the two entries into the then-current MTK
-catalog at release, assign its next version and publish only after validation.
+MTK catalog1.13.0, with these additions. It is not a new
+published catalog version. The MTK thread will merge the two entries into the then-current catalog after
+this source release, assign its next version and publish that catalog separately.
 
 The repository URL `https://github.com/wahltho/X-Plane-LevelUp-737NG-VREF`
 is the public source repository. The previous LevelUp-only package was
 `v0.1.0-preview.1`. The live
 MTK catalog has not been modified; the included catalog files are preparation
 for a separate catalog update.
+
+MTK currently resolves compatibility archives through GitHub
+`releases/latest` and rejects GitHub prereleases. This Beta therefore uses a
+regular GitHub Release, explicitly labeled Beta in its version, title and
+catalog display name. This technical distribution flag does not assert Stable
+aircraft behavior. The module remains optional and disabled by default.
 
 The repository/package ID, module filename and hook markers keep their
 historical LevelUp names to preserve update identity. Preview3 updates both
@@ -106,6 +115,9 @@ is not transactionally atomic. Keep the backups for recovery.
 
 ## Validation status
 
+The source review and Preview3 results below apply to the unchanged runtime.
+The Beta verification record is [here](Documentation/BETA1_RELEASE_2026_10_02.md).
+
 Local preview3 validation: 9 Python tests pass, including original-script
 standalone migration and original XLua namespace loading under LuaJIT.
 The real local MTK package/plan/execute/Restore path passes five product/version
@@ -113,7 +125,8 @@ lifecycles; three independently changed managed states and 40 corrupt-marker
 inputs block without changing aircraft, state or backups. The direct handler
 round also covers all 52 fixture cases. No simulator validation is claimed.
 Independent source review covers the Lua behavior and current payload integration;
-release remains gated on the coordinated final review and compatible MTK release.
+Beta publication retains this reviewed runtime; live catalog activation remains
+with the MTK thread.
 See `Documentation/MTK_OPERATION_INTEGRATION_2026_09_26.md` for exact boundaries.
 
 ## Support, disclaimer and attribution

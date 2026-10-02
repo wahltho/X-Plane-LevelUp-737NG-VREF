@@ -18,8 +18,8 @@ class FixtureOracleTests(unittest.TestCase):
             root = Path(directory)
             manifest = fixtures.generate(root, fixtures.DEFAULT_UPSTREAM)
             targets = {item['path']: item for item in json.loads((ROOT / 'patch-spec.json').read_text())['targets']}
-            self.assertEqual(len(manifest['cases']), 52)
-            self.assertEqual(len({case['id'] for case in manifest['cases']}), 52)
+            self.assertEqual(len(manifest['cases']), 56)
+            self.assertEqual(len({case['id'] for case in manifest['cases']}), 56)
             def read(descriptor):
                 data = (root / descriptor['path']).read_bytes()
                 self.assertEqual(len(data), descriptor['size'])
@@ -50,7 +50,7 @@ class FixtureOracleTests(unittest.TestCase):
                             self.assertIn(b'INSIDE function', expected)
                             self.assertIn(b'INSIDE function', restored)
                             self.assertNotEqual(read(case['recordedOriginal']), restored)
-            self.assertEqual((successes, rejected), (12, 40))
+            self.assertEqual((successes, rejected), (16, 40))
 
 
 if __name__ == '__main__':

@@ -12,7 +12,7 @@ module_spec = importlib.util.spec_from_file_location('vref_installer', ROOT / 'z
 installer = importlib.util.module_from_spec(module_spec)
 module_spec.loader.exec_module(installer)
 DEFAULT_UPSTREAM = Path('/Users/wahltho/dev/Zibo Mod/Original/Zibo Mod Original/B738X_XP12_4_05_35')
-VERSIONS = {'preview1': 'v0.1.0-preview.1', 'preview2': '5625655572f6899551c0bce115316bbd157878d5'}
+VERSIONS = {'preview1': 'v0.1.0-preview.1', 'preview2': '5625655572f6899551c0bce115316bbd157878d5', 'preview3': 'v0.1.0-preview.3'}
 
 
 def historical(revision, path):

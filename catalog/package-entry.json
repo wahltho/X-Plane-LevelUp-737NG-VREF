@@ -1,7 +1,7 @@
 {
   "packageId": "wahltho.levelup-737ng.vref",
-  "displayName": "VREF tables",
-  "description": "FCOM landing-reference speeds for Zibo and LevelUp 737NG, including separate 900ER data. Validation pending.",
+  "displayName": "VREF tables (Beta)",
+  "description": "Beta: FCOM landing-reference speeds for Zibo and LevelUp 737NG, including separate 900ER data. Optional; simulator validation remains open.",
   "category": "compatibilityPackage",
   "activation": "managed",
   "supportedProducts": [

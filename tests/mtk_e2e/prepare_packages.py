@@ -11,7 +11,7 @@ builder = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(builder)
 with zipfile.ZipFile(builder.build(OUT / 'current.zip')) as archive:
     archive.extractall(OUT / 'current')
-for label, revision in [('preview1', 'v0.1.0-preview.1'), ('preview2', '5625655572f6899551c0bce115316bbd157878d5')]:
+for label, revision in [('preview1', 'v0.1.0-preview.1'), ('preview2', '5625655572f6899551c0bce115316bbd157878d5'), ('preview3', 'v0.1.0-preview.3')]:
     def git(path): return subprocess.check_output(['git','show',revision+':'+path],cwd=ROOT)
     raw = git('package-manifest.json')
     manifest = json.loads(raw)

@@ -82,7 +82,8 @@ def main():
     # The catalog snapshot remains a review artifact; never update the live MTK repository.
     entry = json.loads((ROOT / "catalog/package-entry.json").read_text())
     entry["supportedProducts"] = manifest["supportedProducts"]
-    entry["description"] = "FCOM landing-reference speeds for Zibo and LevelUp 737NG, including separate 900ER data. Validation pending."
+    entry["displayName"] = "VREF tables (Beta)"
+    entry["description"] = "Beta: FCOM landing-reference speeds for Zibo and LevelUp 737NG, including separate 900ER data. Optional; simulator validation remains open."
     write("catalog/package-entry.json", entry)
     member = json.loads((ROOT / "catalog/group-member.json").read_text())
     catalog = json.loads((ROOT / "catalog/content-package-catalog.preview.json").read_text())
@@ -91,7 +92,8 @@ def main():
             catalog["packages"][index] = entry
         if package["packageId"] in ("wahltho.levelup-737ng.maintenance", "wahltho.zibo-40535.maintenance"):
             package["members"] = [m for m in package["members"] if m["packageId"] != manifest["packageId"]] + [member]
-            notice = " VREF tables are optional (prepared preview; validation pending)."
+            package["description"] = package["description"].replace(" VREF tables are optional (prepared preview; validation pending).", "")
+            notice = " VREF tables (Beta) are optional; simulator validation remains open."
             if notice not in package["description"]:
                 package["description"] += notice
     write("catalog/content-package-catalog.preview.json", catalog)

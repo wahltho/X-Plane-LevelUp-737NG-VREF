@@ -1,3 +1,24 @@
+# v0.1.0-beta.1
+
+Public Beta for Zibo B737-800X and LevelUp 737NG, including dedicated 900ER
+landing-reference tables. Requires **MTK 0.21.2 or newer** for managed install.
+
+- Promotes the reviewed Preview3 runtime unchanged: identical tables, module,
+  loaders and remaining hooks. No new flight behavior is introduced.
+- Adds explicit Preview3-to-Beta install/update, repeat and Restore coverage
+  for both products, including rejection of independently changed managed files.
+- Includes native MTK schema-3 payloads and a prepared optional catalog entry.
+  The MTK thread publishes the live catalog update after this source release.
+- Uses a regular GitHub Release because MTK compatibility archives use
+  `releases/latest` and reject the GitHub prerelease flag. The release is
+  explicitly **Beta**, not simulator-validated Stable software.
+
+Simulator validation remains open. Keep a full aircraft backup and close
+X-Plane before installation. Do not mix standalone and MTK ownership.
+Support only through https://discord.gg/ySS88PMuyC . Independent, unofficial,
+as-is; not affiliated with Zibo, LevelUp, Laminar Research or Boeing. Simulator
+use only; original aircraft scripts, binaries and manuals are not distributed.
+
 # v0.1.0-preview.3
 
 Requires **X-Plane 737NG Maintenance Toolkit 0.21.2 or newer** for managed

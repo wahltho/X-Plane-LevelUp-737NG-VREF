@@ -2,7 +2,7 @@
   "schemaVersion": 3,
   "packageType": "compatibilityPackage",
   "packageId": "wahltho.levelup-737ng.vref",
-  "packageVersion": "0.1.0-preview.3",
+  "packageVersion": "0.1.0-beta.1",
   "repositoryUrl": "https://github.com/wahltho/X-Plane-LevelUp-737NG-VREF",
   "aircraftFamily": "Zibo B737-800X and LevelUp 737NG Series for X-Plane 12",
   "supportedProducts": [
